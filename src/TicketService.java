@@ -1,17 +1,22 @@
 public class TicketService {
     public static void main(String[] args) {
-        // Creating an empty ticket
-        Ticket emptyTicket = new Ticket();
+        try {
+            // Create an empty ticket
+            Ticket emptyTicket = new Ticket();
 
-        // Creating a full ticket with all parameters
-        Ticket fullTicket = new Ticket("1234", "HallA", 123, 1672531199L, true, 'A', 5.5, 150.00);
+            // Create a ticket with all parameters
+            Ticket fullTicket = new Ticket("1234", "ConcertHall", EventCode.CONCERT_101, 1700000000L,
+                    PromoStatus.PROMO, StadiumSector.B, 7.5, 50.0);
 
-        // Creating a limited ticket (concert hall, event code, and time)
-        Ticket limitedTicket = new Ticket("HallB", 456, 1672531199L);
+            // Create a ticket with limited parameters
+            Ticket limitedTicket = new Ticket("SmallHall", EventCode.CONCERT_202, 1700001000L);
 
-        // Output ticket details to verify
-        System.out.println("Empty Ticket Creation Time: " + emptyTicket.getCreationTime());
-        System.out.println("Full Ticket: " + fullTicket.getConcertHall() + ", Event Code: " + fullTicket.getEventCode() + ", Time: " + fullTicket.getTime() + ", Price: " + fullTicket.getPrice());
-        System.out.println("Limited Ticket: " + limitedTicket.getConcertHall() + ", Event Code: " + limitedTicket.getEventCode() + ", Time: " + limitedTicket.getTime());
+            // Print details of the tickets using toString method
+            System.out.println("Empty Ticket: " + emptyTicket);
+            System.out.println("Full Ticket: " + fullTicket);
+            System.out.println("Limited Ticket: " + limitedTicket);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error creating ticket: " + e.getMessage());
+        }
     }
 }
